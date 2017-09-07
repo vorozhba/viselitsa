@@ -3,6 +3,8 @@
 # Основной класс игры Game. Хранит состояние игры и предоставляет функции для
 # развития игры (ввод новых букв, подсчет кол-ва ошибок и т. п.).
 #
+require 'unicode'
+
 class Game
   def initialize(slovo)
     # Инициализируем переменные экземпляра. В @letters будет лежать массив букв
@@ -29,7 +31,7 @@ class Game
       abort "Загадано пустое слово, нечего отгадывать. Закрываемся"
     end
     # Сразу приводим слово к нижнему регистру.
-    return slovo.downcase.encode('UTF-8').split("")
+    return Unicode::downcase(slovo).encode('UTF-8').split("")
   end
 
   # Метод, возвращающий статус игры (геттер для @status)
@@ -106,7 +108,8 @@ class Game
     letter = ""
     while letter == ""
       # Сразу приводим букву к нижнему регистру.
-      letter = STDIN.gets.downcase.encode("UTF-8").chomp
+      user_letter = STDIN.gets.encode("UTF-8").chomp
+      letter = Unicode::downcase(user_letter)
     end
 
     # После получения ввода, передаем управление в основной метод игры.
