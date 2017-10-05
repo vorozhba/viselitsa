@@ -17,7 +17,7 @@ class ResultPrinter
 
     # В цикле прочитаем 7 файлов из папки image и запишем из содержимое в массив
     while counter <= 7
-      file_name = current_path + "/image/#{counter}.txt"
+      file_name = current_path + "/../image/#{counter}.txt"
 
       if File.exist?(file_name)
         file = File.new(file_name, "r:UTF-8")
